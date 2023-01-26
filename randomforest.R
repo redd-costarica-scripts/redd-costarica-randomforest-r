@@ -55,32 +55,43 @@ require(raster)
 require(rgdal)
 #require(RSAGA)
 
+args <- commandArgs(trailingOnly = TRUE)
+cat("Argumentos de entrada\n")
+print(args)
+
 #
 cat("Set variables and start processing\n")
 #
 #############################   SET VARIABLES HERE  ###################################
 # Name and path for the Shapefile (don't need the .shp extension)
 #shapefile <- 'D:/AGRESTA/CursoCostaRica/CursoREDD/Respaldo/inf_auxiliar/ROI_zona_estudio/ROI_zona_estudio.shp'
-shapefile <- '/home/mfvargas/Downloads/redd/rf/ROI_p16.shp'
+#shapefile <- '/home/mfvargas/Downloads/redd/rf/ROI_p16.shp'
+#shapefile <- 'D:/redd/clasificacion/roi/p15_ROI.shp'
+shapefile <- args[2]
 # Approximate number of training samples to be randomly selected for each land cover class
 # If numsamps is set to "0" then all pixels in all of the polygons will be used as training samples
-#numsamps <- 2000
-numsamps <- 12000
+numsamps <- strtoi(args[3])
 # Name of the attribute that holds the integer land cover type identifyer
-attName <- 'id'
+attName <- args[4]
 # No-data value for the input image
 nd <- -99999
 # Name and path for the input satellite image 
 #inImage <-'D:/AGRESTA/CursoCostaRica/Pruebas_PEQUENA/im_final.tif'
-inImage <-'/home/mfvargas/Downloads/redd/bash/combinacion_total.tif'
+#inImage <-'/home/mfvargas/Downloads/redd/bash/combinacion_total.tif'
+#inImage <-'C:/combinacion/LC08_P15_R54_c20b_2021_197.tif'
+inImage <- args[1]
 # Name and path of the output GeoTiff image
 # outImageName <- 'D:/AGRESTA/CursoCostaRica/Clasificacion.tif'
-outImageName <- '/home/mfvargas/Downloads/redd/bash/clas01.tif'
+# outImageName <- '/home/mfvargas/Downloads/redd/bash/clas01.tif'
+# outImageName <- 'D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_197-clas.tif'
+outImageName <- args[5]
 # Name and location of the output Shapefile point file that will be created. If this output 
 # is not needed you can enter two double or single-quotes (“” or '')
 # Note that if this file exists the write will fail with the message "Creation of output file failed"  
 #outMarginFile <- 'D:/AGRESTA/CursoCostaRica/Clasificacion_outmargin.shp'
-outMarginFile <- '/home/mfvargas/Downloads/redd/bash/clas01_outmargin.shp'
+#outMarginFile <- '/home/mfvargas/Downloads/redd/bash/clas01_outmargin.shp'
+#outMarginFile <- 'D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_197-clas.shp'
+outMarginFile <- args[6]
 # Output classification layer without applying threshold (enter TRUE or FALSE)
 classImage <- TRUE
 # Output probability image layer (enter TRUE or FALSE)
@@ -227,7 +238,7 @@ cat("Calculating random forest object\n")
 
 randfor <- randomForest(as.factor(response) ~., data=trainvals, importance=TRUE, na.action=na.omit)
 
-?randomForest
+#?randomForest
 
 plot(randfor)
 randfor

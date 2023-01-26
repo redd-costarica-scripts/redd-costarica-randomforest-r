@@ -1,0 +1,5 @@
+@echo on
+
+call "C:/Program Files/R/R-4.2.1/bin/x64/Rscript.exe" D:/redd/clasificacion/randomforest.R C:/combinacion/LC08_P15_R54_c20b_2021_197.tif D:/redd/clasificacion/roi/p15_ROI.shp 10000 clases D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_197-clas.tif D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_197-clas.shp
+call "C:/Program Files/R/R-4.2.1/bin/x64/Rscript.exe" D:/redd/clasificacion/randomforest.R C:/combinacion/LC08_P15_R54_c20b_2021_229.tif D:/redd/clasificacion/roi/p15_ROI.shp 10000 clases D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_229-clas.tif D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_229-clas.shp
+call "C:/Program Files/R/R-4.2.1/bin/x64/Rscript.exe" D:/redd/clasificacion/randomforest.R C:/combinacion/LC08_P15_R54_c20b_2021_245.tif D:/redd/clasificacion/roi/p15_ROI.shp 10000 clases D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_245-clas.tif D:/redd/clasificacion/clasificacion-resultado/LC08_P15_R54_c20b_2021_245-clas.shp
